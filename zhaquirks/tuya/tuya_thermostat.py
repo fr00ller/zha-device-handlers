@@ -66,12 +66,14 @@ class PresetModeV04(t.enum8):
     Auto = 0x01
     Eco = 0x03
 
+
 class PresetModeV05(t.enum8):
     """Tuya preset mode v05 enum."""
 
     Manual = 0x00
     Auto = 0x01
     Temporary_Manual = 0x03
+
 
 class SensorMode(t.enum8):
     """Tuya sensor mode enum."""
@@ -638,15 +640,13 @@ base_avatto_quirk = (
         attribute_name=TuyaThermostat.AttributeDefs.local_temperature.name,
         converter=lambda x: x * 10,
     )
-
     .tuya_enum(
         dp_id=128,
         attribute_name="preset_mode",
         enum_class=PresetModeV05,
         translation_key="preset_mode",
-        fallback_name="Preset mode"
+        fallback_name="Preset mode",
     )
-
     .tuya_number(
         dp_id=109,
         attribute_name=TuyaThermostat.AttributeDefs.local_temperature_calibration.name,
@@ -659,7 +659,6 @@ base_avatto_quirk = (
         translation_key="local_temperature_calibration",
         fallback_name="Local temperature calibration",
     )
-
     .tuya_number(
         dp_id=110,
         attribute_name="regulator_set_point",
@@ -672,7 +671,6 @@ base_avatto_quirk = (
         translation_key="regulator_set_point",
         fallback_name="Regulator set point",
     )
-
     .tuya_dp(
         dp_id=114,
         ep_attribute=TuyaThermostat.ep_attribute,
